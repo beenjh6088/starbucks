@@ -21,8 +21,10 @@ searchInputEl.addEventListener('blur', function(){
 
 
 
+
 //배지 요소 찾기
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 
 window.addEventListener('scroll', _.throttle(function(){
   if(window.scrollY > 500){
@@ -32,15 +34,30 @@ window.addEventListener('scroll', _.throttle(function(){
       opacity: 0,
       display: 'none'
     });
+    //to-top 버튼 보이기
+    gsap.to(toTopEl, .2, {
+      x: 0
+    });    
   }else{
     //배지 보이기
     gsap.to(badgeEl, .6, {
       opacity: 1,
       display: 'block'
     });
+    //to-top 버튼 숨기기
+    gsap.to(toTopEl, .2, {
+      x: 100
+    });
   }
 }, 300));
 // _.throttle(함수, 시간)
+
+toTopEl.addEventListener('click', function() {
+  gsap.to(window, .7, {
+    scrollTo: 0
+  })
+});
+
 
 
 
@@ -52,6 +69,7 @@ fadeEls.forEach(function(fadeEl, index){
     opacity: 1
   });
 });
+
 
 
 
@@ -78,6 +96,18 @@ new Swiper('.promotion .swiper-container', {
     nextEl: '.promotion .swiper-next'
   }
 });
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next'
+  }
+});
+
+
 
 
 //프로모션 토글 기능
@@ -132,3 +162,10 @@ spyEls.forEach(function(spyEl) {
     .setClassToggle(spyEl, 'show')
     .addTo(new ScrollMagic.Controller());
 });
+
+
+
+
+// 연도 삽입
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear();

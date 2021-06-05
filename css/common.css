@@ -2,14 +2,12 @@
 body {
   font-size: 16px;
   font-family: 'Nanum Gothic', sans-serif;
-  height: 6000px;
-}
-a {
-  display: block;
-  text-decoration: none;
 }
 img {
   display: block;
+}
+a {
+  text-decoration: none;
 }
 .inner {
   width: 1100px;
